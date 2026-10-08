@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg: #0a0a0c;
+    --color-card: #121217;
+    --color-card-border: rgba(255, 255, 255, 0.08);
+    --color-accent: #38bdf8;
+    --color-accent-subtle: rgba(56, 189, 248, 0.12);
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: #f1f1f4;
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #0a0a0c;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
+  }
+
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.25);
+    color: #38bdf8;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0e;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #23232c;
+    border-radius: 4px;
+    border: 2px solid #0a0a0e;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+  }
+
+  /* Focus visible accessibility outline */
+  *:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+  }
+}
+
+/* Skip to content accessibility utility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: #38bdf8;
+  color: #0a0a0c;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  z-index: 100;
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Background Subtle Grid Pattern with soft radial mask */
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 40%, transparent 95%);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 40%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 40%, transparent 95%);
+}
+
+/* Glass Card styling */
+.glass-panel {
+  background: rgba(18, 18, 24, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(24, 24, 32, 0.9);
+  border-color: rgba(56, 189, 248, 0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px -10px rgba(0, 0, 0, 0.6);
+}
+
+/* Monospace font utility */
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+/* Section Title Label Badge */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  background-color: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+}
+
+/* Pulse indicator animation */
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* Print Styles for Executive CV Printing */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    background-image: none !important;
+  }
+  header, footer, nav, button, .skip-link, #contact, #journey, #skills, #about, #projects, .fixed {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* Reduced motion preference compliance */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
